@@ -7,17 +7,17 @@ class ExpeditionSerializer(serializers.ModelSerializer):
     registrations = serializers.HyperlinkedIdentityField(view_name='expedition-registration-list')
     class Meta:
         model = Expedition
-        fields = ('id', 'created', 'name', 'start_date', 'end_date', 'min_jump', 'waypoints', 'registrations')
+        fields = '__all__'
 
 
 class WaypointSerializer(serializers.ModelSerializer):
     class Meta:
         model = Waypoint
-        fields = ('id', 'created', 'system', 'planet', 'expedition', 'number')
+        fields = '__all__'
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Registration
-        fields = ('id', 'created', 'updated', 'name', 'email', 'region', 'ship_model', 'ship_name', 'ship_jump',
-                  'expedition')
+        fields = '__all__'
+        read_only_fields = ('registration_number',)

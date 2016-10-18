@@ -1,11 +1,11 @@
 from django.db import models
 
-def calculate_registration_number(fk):
-    present_keys = Registration.objects.filter(fk=fk).order_by('-registration_number').values_list('registration_number', flat=True)
+def calculate_registration_number(expedition):
+    present_keys = Registration.objects.filter(expedition=expedition).order_by('-registration_number').values_list('registration_number', flat=True)
     if present_keys:
         return present_keys[0] + 1
     else:
-        return 0
+        return 1
 
 class Expedition(models.Model):
     created = models.DateTimeField(auto_now_add=True)

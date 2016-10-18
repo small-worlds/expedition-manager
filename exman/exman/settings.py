@@ -24,7 +24,9 @@ SECRET_KEY = '1^(g3a)!%byb#8^a#9$$f3)&6=m$d_lb4kkx-w=1@z2q4+!^h0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
+# ALLOWED_HOSTS = ['.smallworlds.io', '127.0.0.1']
 ALLOWED_HOSTS = []
 
 

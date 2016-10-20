@@ -20,16 +20,12 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'users', account_views.UserViewSet)
-router.register(r'profiles', account_views.ProfileViewSet)
 router.register(r'expeditions', expedition_views.ExpeditionViewSet)
 router.register(r'waypoints', expedition_views.WaypointViewSet)
 router.register(r'registrations', expedition_views.RegistrationViewSet)
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
-    # url(r'^', include('expeditions.urls')),
-    # url(r'^', include('accounts.urls')),
     url('^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
-

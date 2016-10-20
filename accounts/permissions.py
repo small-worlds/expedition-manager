@@ -1,5 +1,6 @@
 from rest_framework import permissions
 
+
 class IsStaffOrTargetUser(permissions.BasePermission):
     def has_permission(self, request, view):
         # Allow user to list all users if logged in user is staff
@@ -19,12 +20,11 @@ class IsStaffOrTargetUser(permissions.BasePermission):
 
         return obj.username == request.user.username
 
+
 class IsUserOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             return True
 
     def has_object_permission(self, request, view, obj):
-        if request.method == 'POST':
-            return False
         return obj.user == request.user

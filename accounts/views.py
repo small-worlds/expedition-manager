@@ -1,4 +1,4 @@
-from rest_framework import viewsets, mixins
+from rest_framework import viewsets, generics
 from django.contrib.auth.models import User
 from accounts.serializers import UserSerializer, ProfileSerializer
 from accounts.permissions import IsStaffOrTargetUser, IsUserOrReadOnly
@@ -13,17 +13,4 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.filter(is_active=True)
     model = User
     serializer_class = UserSerializer
-    permission_classes = [IsStaffOrTargetUser]
-
-
-class ProfileViewSet(viewsets.GenericViewSet,
-                     mixins.ListModelMixin,
-                     mixins.RetrieveModelMixin,
-                     mixins.UpdateModelMixin):
-    """
-    TODO: Define list
-    """
-    queryset = Profile.objects.all()
-    model = Profile
-    serializer_class = ProfileSerializer
-    permissions_classes = [IsUserOrReadOnly]
+    permission_classes = [IsStaffOrTargetUser,]

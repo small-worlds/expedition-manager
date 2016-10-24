@@ -1,8 +1,8 @@
-from rest_framework import viewsets, generics
+from rest_framework import viewsets
 from django.contrib.auth.models import User
-from accounts.serializers import UserSerializer, ProfileSerializer
-from accounts.permissions import IsStaffOrTargetUser, IsUserOrReadOnly
-from accounts.models import Profile
+from accounts.serializers import UserSerializer
+from accounts.permissions import IsStaffOrTargetUser
+
 
 class UserViewSet(viewsets.ModelViewSet):
     """

@@ -25,7 +25,6 @@ router.register(r'waypoints', expedition_views.WaypointViewSet)
 router.register(r'registrations', expedition_views.RegistrationViewSet)
 
 urlpatterns = [
-    # url(r'^admin/', admin.site.urls),
     url('^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

@@ -3,28 +3,6 @@ from django.contrib.auth.models import User
 from accounts.models import Profile
 
 
-# class UserSerializer(serializers.ModelSerializer):
-#     region = serializers.URLField(source='profile.region', allow_blank=True)
-#     pc = serializers.URLField(source='profile.pc', allow_blank=False)
-#
-#     class Meta:
-#         model = User
-#         fields = ('username', 'password', 'email', 'region', 'pc' )
-#         extra_kwargs = {'password': {'write_only': True},
-#                         'email': {'write_only': True}}
-#         read_only_fields = ('profile',)
-#
-#     def create(self, validated_data):
-#         user = User(
-#             email=validated_data['email'],
-#             username=validated_data['username']
-#
-#         )
-#         user.set_password(validated_data['password'])
-#         user.save()
-#         return user
-
-
 class UserAdminSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

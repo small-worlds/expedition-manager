@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 def calculate_registration_number(expedition):
     present_keys = Registration.objects.filter(expedition=expedition).order_by('-registration_number').values_list('registration_number', flat=True)
@@ -33,17 +34,14 @@ class Waypoint(models.Model):
 class Registration(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_length=20, blank=False)
-    email = models.EmailField(max_length=254, blank=False)
-    region = models.CharField(max_length=3, blank=False)
-    pc = models.BooleanField(default=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registration')
     ship_model = models.CharField(max_length=50, blank=False)
     ship_name = models.CharField(max_length=255, blank=True, default='')
     ship_jump = models.DecimalField(max_digits=5, decimal_places=2)
     expedition = models.ForeignKey(Expedition, on_delete=models.CASCADE, related_name='registrations')
     registration_number = models.PositiveIntegerField()
     class Meta:
-        unique_together = (('email', 'expedition'), ('registration_number', 'expedition'))
+        unique_together = (('user', 'expedition'), ('registration_number', 'expedition'))
 
     def save(self, *args, **kwargs):
         registration_number = calculate_registration_number(self.expedition)

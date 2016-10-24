@@ -38,6 +38,8 @@ class Registration(models.Model):
     ship_model = models.CharField(max_length=50, blank=False)
     ship_name = models.CharField(max_length=255, blank=True, default='')
     ship_jump = models.DecimalField(max_digits=5, decimal_places=2)
+    ship_rebuy = models.PositiveIntegerField(blank=False)
+    ship_weight = models.DecimalField(max_digits=6, decimal_places=2)
     expedition = models.ForeignKey(Expedition, on_delete=models.CASCADE, related_name='registrations')
     registration_number = models.PositiveIntegerField()
     class Meta:

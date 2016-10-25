@@ -27,4 +27,5 @@ router.register(r'registrations', expedition_views.RegistrationViewSet)
 urlpatterns = [
     url('^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^auth/', include('djoser.urls.authtoken'))
 ]

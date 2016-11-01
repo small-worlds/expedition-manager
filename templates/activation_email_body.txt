@@ -1,0 +1,8 @@
+Dear CMDR {{ user }},
+
+Thank you for registering on https://smallworlds.io/, the Small Worlds Expeditions site!
+
+Please follow the following link to activate your account: {{ domain }}{{ url }}
+
+We'll see you in the black!
+- The Small Worlds Expedition Team

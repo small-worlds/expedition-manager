@@ -22,8 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '1^(g3a)!%byb#8^a#9$$f3)&6=m$d_lb4kkx-w=1@z2q4+!^h0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['.smallworlds.io', '127.0.0.1']
 # ALLOWED_HOSTS = []
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'expeditions.apps.ExpeditionsConfig',
     'accounts.apps.AccountsConfig',
     'djoser'

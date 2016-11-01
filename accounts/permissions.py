@@ -18,7 +18,7 @@ class IsStaffOrTargetUser(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        return obj.username == request.user.username
+        return obj.user == request.user
 
 
 class IsUserOrReadOnly(permissions.BasePermission):

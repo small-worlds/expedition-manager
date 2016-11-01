@@ -14,10 +14,6 @@ class Expedition(models.Model):
     start_date = models.DateField(auto_now_add=False)
     end_date = models.DateField(auto_now_add=False)
     min_jump = models.IntegerField(blank=False)
-    # how to handle roles? Do we WANT roles?
-    # has many Admins - see accounts?
-    # belongs to one Admin - again, see accounts?
-    # has many Members - again, see accounts?
 
 
 class Waypoint(models.Model):

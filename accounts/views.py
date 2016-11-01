@@ -1,16 +1,27 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 from django.contrib.auth.models import User
-from accounts.serializers import UserSerializer
+from accounts.models import Profile
+from accounts.serializers import ProfileSerializer, UserSerializer
 from accounts.permissions import IsStaffOrTargetUser
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class ProfileViewSet(mixins.RetrieveModelMixin,
+                  mixins.UpdateModelMixin,
+                  mixins.ListModelMixin,
+                  viewsets.GenericViewSet):
     """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update`, and `destroy` actions. `list` will only list active users.
-    All other actions are valid only for the authenticated user.
+    `list`, `retrieve`, and `update` actions. Only staff or the target user can modify a profile.
+    """
+    queryset = Profile.objects.all()
+    model = Profile
+    serializer_class = ProfileSerializer
+    permission_classes = [IsStaffOrTargetUser, ]
+
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    `list` and `retrieve` actions.
     """
     queryset = User.objects.filter(is_active=True)
     model = User
     serializer_class = UserSerializer
-    permission_classes = [IsStaffOrTargetUser,]

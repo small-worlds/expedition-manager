@@ -41,14 +41,17 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'expeditions.apps.ExpeditionsConfig',
     'accounts.apps.AccountsConfig',
-    'djoser'
+    'djoser',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -153,3 +156,20 @@ DJOSER = {
 # EMAIL_HOST_USER = 'noreply@smallworlds.io'
 # EMAIL_HOST_PASSWORD = 'OH_LOOK_SOMETHING_HERE'
 # DEFAULT_FROM_EMAIL = 'noreply@smallworlds.io'
+
+### CORS settings
+### See https://github.com/ottoyiu/django-cors-headers/
+
+### DISABLE THIS IN PRODUCTION!!!
+CORS_ORIGIN_ALLOW_ALL = True
+
+### Origins to allow AJAX traffic from
+CORS_ORIGIN_WHITELIST = (
+    'mysite.com',
+    'www.mysite.com',
+    'localhost:8000',
+    '127.0.0.1:8000'
+)
+
+### Allow the Django CSRF header to work properly
+CORS_REPLACE_HTTPS_REFERER = True

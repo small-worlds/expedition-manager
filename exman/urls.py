@@ -17,8 +17,12 @@ from django.conf.urls import url, include
 import accounts.views as account_views
 import expeditions.views as expedition_views
 from rest_framework.routers import DefaultRouter
+from django.contrib import admin
+
+admin.autodiscover()
 
 router = DefaultRouter()
+router.register(r'profiles', account_views.ProfileViewSet)
 router.register(r'users', account_views.UserViewSet)
 router.register(r'expeditions', expedition_views.ExpeditionViewSet)
 router.register(r'waypoints', expedition_views.WaypointViewSet)
@@ -27,4 +31,6 @@ router.register(r'registrations', expedition_views.RegistrationViewSet)
 urlpatterns = [
     url('^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^auth/', include('djoser.urls.authtoken')),
+    url(r'^admin/', include(admin.site.urls)),
 ]

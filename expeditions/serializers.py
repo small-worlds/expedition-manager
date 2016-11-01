@@ -4,7 +4,7 @@ from expeditions.models import Expedition, Waypoint, Registration
 
 class ExpeditionSerializer(serializers.ModelSerializer):
     waypoints = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='waypoint-detail')
-    registrations = serializers.HyperlinkedIdentityField(view_name='expedition-registration-list')
+    # registrations = serializers.HyperlinkedIdentityField(view_name='expeditionregistration-list')
     class Meta:
         model = Expedition
         fields = '__all__'

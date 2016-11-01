@@ -30,6 +30,7 @@ class RegistrationViewSet(viewsets.ModelViewSet):
     serializer_class = expeditions.serializers.RegistrationSerializer
     permission_classes = [IsRegistrantOrReadOnly]
 
+
 class ExpeditionRegistrationList(generics.ListAPIView):
     """
     List all registrations for a given expedition

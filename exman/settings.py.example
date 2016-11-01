@@ -22,11 +22,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'CHANGEMEOMGPLEASE'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
-ALLOWED_HOSTS = ['.smallworlds.io', '127.0.0.1']
-# ALLOWED_HOSTS = []
+# A blank List is allowable when DEBUG = True, but a VERY BAD IDEA™
+ALLOWED_HOSTS = ['.mysite.example', '127.0.0.1']
 
 # Application definition
 
@@ -136,18 +136,20 @@ REST_FRAMEWORK = {
 }
 
 DJOSER = {
-    'DOMAIN': 'smallworlds.io',
-    'SITE_NAME': 'Small Worlds Expeditions',
+    'DOMAIN': 'localhost',
+    'SITE_NAME': 'My Expedition Site',
     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
-    'SEND_ACTIVATION_EMAIL': True,
+    # Enabling this is a good idea outside of development
+    'SEND_ACTIVATION_EMAIL': False,
     'PASSWORD_VALIDATORS': [],
     'SERIALIZERS': {},
 }
 
-EMAIL_HOST =  'localhost'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'noreply@smallworlds.io'
-EMAIL_HOST_PASSWORD = 'OH_LOOK_SOMETHING_HERE'
-DEFAULT_FROM_EMAIL = 'noreply@smallworlds.io'
+### Email settings. Entirely optional for development.
+# EMAIL_HOST =  'localhost'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'noreply@smallworlds.io'
+# EMAIL_HOST_PASSWORD = 'OH_LOOK_SOMETHING_HERE'
+# DEFAULT_FROM_EMAIL = 'noreply@smallworlds.io'

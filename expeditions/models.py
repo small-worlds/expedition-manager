@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 def calculate_registration_number(expedition):
     present_keys = Registration.objects.filter(expedition=expedition).order_by('-registration_number').values_list('registration_number', flat=True)
     if present_keys:
@@ -8,9 +9,13 @@ def calculate_registration_number(expedition):
     else:
         return 1
 
+
 class Expedition(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    name = models.CharField(max_length=255, blank=False, default='')
+    name = models.CharField(max_length=255, blank=False)
+    description = models.CharField(max_length=255, blank=True)
+    teaser_image = models.URLField(max_length=1024, blank=True)
+    teaser_is_movie = models.BooleanField(default=False)
     start_date = models.DateField(auto_now_add=False)
     end_date = models.DateField(auto_now_add=False)
     min_jump = models.IntegerField(blank=False)
@@ -21,6 +26,10 @@ class Waypoint(models.Model):
         unique_together = ('number', 'expedition')
         ordering = ['number']
     created = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=255, blank=True, default='')
+    gravity = models.DecimalField(max_digits=4, decimal_places=2)
+    latitude = models.DecimalField(max_digits=4, decimal_places=2)
+    longitude = models.DecimalField(max_digits=4, decimal_places=2)
     system = models.CharField(max_length=255, blank=False, default='')
     planet = models.CharField(max_length=5, blank=False, default='')
     expedition = models.ForeignKey(Expedition, on_delete=models.CASCADE, related_name='waypoints')
@@ -38,6 +47,7 @@ class Registration(models.Model):
     ship_weight = models.DecimalField(max_digits=6, decimal_places=2)
     expedition = models.ForeignKey(Expedition, on_delete=models.CASCADE, related_name='registrations')
     registration_number = models.PositiveIntegerField()
+
     class Meta:
         unique_together = (('user', 'expedition'), ('registration_number', 'expedition'))
 

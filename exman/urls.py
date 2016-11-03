@@ -34,5 +34,5 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^auth/', include('djoser.urls.authtoken')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^expedition-registrations/(?P<pk>[0-9]+)/', expedition_views.ExpeditionRegistrationList.as_view())
+    url(r'^expeditions/(?P<pk>[0-9]+)/registrations/', expedition_views.ExpeditionRegistrationList.as_view())
 ]

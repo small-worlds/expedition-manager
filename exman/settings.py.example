@@ -146,7 +146,10 @@ DJOSER = {
     # Enabling this is a good idea outside of development
     'SEND_ACTIVATION_EMAIL': False,
     'PASSWORD_VALIDATORS': [],
-    'SERIALIZERS': {'user_registration': 'accounts.serializers.UserRegistrationSerializer'},
+    'SERIALIZERS': {
+                    'user_registration': 'accounts.serializers.UserRegistrationSerializer'
+                    'user': 'accounts.serializers.AuthUserSerializer'
+                   },
 }
 
 ### Email settings. Entirely optional for development.

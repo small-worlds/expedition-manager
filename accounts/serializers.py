@@ -17,6 +17,14 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('username', 'id', 'date_joined')
 
 
+class AuthUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'id', 'date_joined', 'email', 'id', 'is_staff')
+        read_only_fields = ('username', 'id', 'date_joined', 'is_staff')
+
+
+
 class UserRegistrationSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
 

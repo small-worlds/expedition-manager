@@ -27,10 +27,12 @@ router.register(r'users', account_views.UserViewSet)
 router.register(r'expeditions', expedition_views.ExpeditionViewSet)
 router.register(r'waypoints', expedition_views.WaypointViewSet)
 router.register(r'registrations', expedition_views.RegistrationViewSet)
+router.register(r'my-registrations', expedition_views.RegistrationSelfViewSet, base_name='my-registration')
 
 urlpatterns = [
     url('^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^auth/', include('djoser.urls.authtoken')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^expedition-registrations/(?P<pk>[0-9]+)/', expedition_views.ExpeditionRegistrationList.as_view())
 ]

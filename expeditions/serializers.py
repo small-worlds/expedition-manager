@@ -3,7 +3,7 @@ from expeditions.models import Expedition, Waypoint, Registration
 
 
 class ExpeditionSerializer(serializers.ModelSerializer):
-    waypoints = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='waypoint-detail')
+    waypoints = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     # registrations = serializers.HyperlinkedIdentityField(view_name='expeditionregistration-list')
     class Meta:
         model = Expedition

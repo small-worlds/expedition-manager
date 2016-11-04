@@ -26,9 +26,18 @@ class RegistrationViewSet(viewsets.ModelViewSet):
     """
     List all registrations, or create a new registration.
     """
-    queryset = Registration.objects.all()
     serializer_class = expeditions.serializers.RegistrationSerializer
     permission_classes = [IsRegistrantOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        queryset = Registration.objects.all()
+        user = self.request.query_params.get('user', None)
+        if user is not None:
+            queryset = Registration.objects.filter(user=user)
+        return queryset
 
 
 class ExpeditionRegistrationList(generics.ListAPIView):

@@ -147,7 +147,7 @@ DJOSER = {
     'SEND_ACTIVATION_EMAIL': False,
     'PASSWORD_VALIDATORS': [],
     'SERIALIZERS': {
-                    'user_registration': 'accounts.serializers.UserRegistrationSerializer'
+                    'user_registration': 'accounts.serializers.UserRegistrationSerializer',
                     'user': 'accounts.serializers.AuthUserSerializer'
                    },
 }

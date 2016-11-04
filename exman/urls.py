@@ -26,7 +26,7 @@ router.register(r'profiles', account_views.ProfileViewSet)
 router.register(r'users', account_views.UserViewSet)
 router.register(r'expeditions', expedition_views.ExpeditionViewSet)
 router.register(r'waypoints', expedition_views.WaypointViewSet)
-router.register(r'registrations', expedition_views.RegistrationViewSet)
+router.register(r'registrations', expedition_views.RegistrationViewSet, base_name='registration')
 router.register(r'my-registrations', expedition_views.RegistrationSelfViewSet, base_name='my-registration')
 
 urlpatterns = [

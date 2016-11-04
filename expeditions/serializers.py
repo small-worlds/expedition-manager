@@ -20,4 +20,4 @@ class RegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Registration
         fields = '__all__'
-        read_only_fields = ('registration_number',)
+        read_only_fields = ('registration_number', 'user')

@@ -35,8 +35,14 @@ class RegistrationViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = Registration.objects.all()
         user = self.request.query_params.get('user', None)
+        expedition = self.request.query_params.get('expedition', None)
         if user is not None:
-            queryset = Registration.objects.filter(user=user)
+            if expedition is not None:
+                queryset = Registration.objects.filter(user=user, expedition=expedition)
+            else:
+                queryset = Registration.objects.filter(user=user)
+        elif expedition is not None:
+            queryset = Registration.objects.filter(expedition=expedition)
         return queryset
 
 

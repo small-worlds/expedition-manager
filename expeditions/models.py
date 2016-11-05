@@ -30,6 +30,7 @@ class Waypoint(models.Model):
     gravity = models.DecimalField(max_digits=4, decimal_places=2)
     latitude = models.DecimalField(max_digits=5, decimal_places=2)
     longitude = models.DecimalField(max_digits=5, decimal_places=2)
+    datetime = models.DateTimeField(blank=True, null=True)
     system = models.CharField(max_length=255, blank=False, default='')
     planet = models.CharField(max_length=5, blank=False, default='')
     expedition = models.ForeignKey(Expedition, on_delete=models.CASCADE, related_name='waypoints')

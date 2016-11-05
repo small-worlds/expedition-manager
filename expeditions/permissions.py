@@ -17,7 +17,7 @@ class IsRegistrantOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             return True
-        elif request.user.is_authenticated and request.method == 'POST':
+        elif request.user.is_authenticated:
             return True
         else:
             return False

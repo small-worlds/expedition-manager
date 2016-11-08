@@ -2,6 +2,7 @@ from rest_framework import viewsets, generics, mixins
 import expeditions.serializers
 from expeditions.models import Expedition, Waypoint, Registration
 from expeditions.permissions import IsAdminOrReadOnly, IsRegistrantOrReadOnly, IsRegistrant
+from rest_framework.permissions import IsAuthenticated
 
 
 class ExpeditionViewSet(viewsets.ModelViewSet):
@@ -65,7 +66,7 @@ class RegistrationSelfViewSet(mixins.RetrieveModelMixin,
     List all registrations for yourself
     """
     serializer_class = expeditions.serializers.RegistrationSerializer
-    permission_classes = [IsRegistrant]
+    permission_classes = [IsAuthenticated, IsRegistrant]
 
     def get_queryset(self):
         return Registration.objects.filter(user=self.request.user)

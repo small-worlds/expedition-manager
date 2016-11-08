@@ -34,16 +34,16 @@ class RegistrationViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
-        queryset = Registration.objects.all()
+        queryset = Registration.objects.filter(published=True)
         user = self.request.query_params.get('user', None)
         expedition = self.request.query_params.get('expedition', None)
         if user is not None:
             if expedition is not None:
-                queryset = Registration.objects.filter(user=user, expedition=expedition)
+                queryset = Registration.objects.filter(user=user, expedition=expedition, published=True)
             else:
-                queryset = Registration.objects.filter(user=user)
+                queryset = Registration.objects.filter(user=user, published=True)
         elif expedition is not None:
-            queryset = Registration.objects.filter(expedition=expedition)
+            queryset = Registration.objects.filter(expedition=expedition, published=True)
         return queryset
 
 

@@ -19,6 +19,10 @@ class Expedition(models.Model):
     start_date = models.DateField(auto_now_add=False)
     end_date = models.DateField(auto_now_add=False)
     min_jump = models.IntegerField(blank=False)
+    published = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
 
 
 class Waypoint(models.Model):

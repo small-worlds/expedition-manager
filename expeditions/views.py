@@ -9,7 +9,7 @@ class ExpeditionViewSet(viewsets.ModelViewSet):
     """
     List all expeditions, or create a new expedition.
     """
-    queryset = Expedition.objects.all()
+    queryset = Expedition.objects.filter(published=True)
     serializer_class = expeditions.serializers.ExpeditionSerializer
     permission_classes = [IsAdminOrReadOnly]
 
@@ -34,16 +34,16 @@ class RegistrationViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
-        queryset = Registration.objects.filter(published=True)
+        queryset = Registration.objects.all()
         user = self.request.query_params.get('user', None)
         expedition = self.request.query_params.get('expedition', None)
         if user is not None:
             if expedition is not None:
-                queryset = Registration.objects.filter(user=user, expedition=expedition, published=True)
+                queryset = Registration.objects.filter(user=user, expedition=expedition)
             else:
-                queryset = Registration.objects.filter(user=user, published=True)
+                queryset = Registration.objects.filter(user=user)
         elif expedition is not None:
-            queryset = Registration.objects.filter(expedition=expedition, published=True)
+            queryset = Registration.objects.filter(expedition=expedition)
         return queryset
 
 

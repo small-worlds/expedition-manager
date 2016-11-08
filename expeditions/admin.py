@@ -8,6 +8,7 @@ class ExpeditionAdmin(admin.ModelAdmin):
 
 class WaypointAdmin(admin.ModelAdmin):
     list_display = ('id', 'expedition', 'name', 'system', 'planet', 'datetime')
+    list_filter = ('expedition', )
 
 admin.site.register(Expedition, ExpeditionAdmin)
 admin.site.register(Waypoint, WaypointAdmin)

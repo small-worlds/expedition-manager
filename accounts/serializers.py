@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from accounts.models import Profile
 from djoser import settings
+from django.db import transaction
 
 
 class ProfileSerializer(serializers.ModelSerializer):

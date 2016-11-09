@@ -30,7 +30,7 @@ router.register(r'registrations', expedition_views.RegistrationViewSet, base_nam
 router.register(r'my-registrations', expedition_views.RegistrationSelfViewSet, base_name='my-registration')
 
 urlpatterns = [
-    url(r'^/', include(router.urls)),
+    url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^auth/', include('djoser.urls.authtoken')),
     url(r'^admin/', include(admin.site.urls)),

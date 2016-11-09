@@ -51,6 +51,7 @@ class Registration(models.Model):
     ship_rebuy = models.PositiveIntegerField(blank=False)
     ship_weight = models.DecimalField(max_digits=6, decimal_places=2)
     expedition = models.ForeignKey(Expedition, on_delete=models.CASCADE, related_name='registrations')
+    retracted = models.BooleanField(default=False)
     registration_number = models.PositiveIntegerField()
 
     class Meta:

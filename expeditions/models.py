@@ -64,7 +64,7 @@ class Registration(models.Model):
         unique_together = (('user', 'expedition'), ('registration_number', 'expedition'))
 
     def save(self, *args, **kwargs):
-        if self.registration_number is not None:
+        if not self.pk:
             registration_number = calculate_registration_number(self.expedition)
             self.registration_number = registration_number
         super(Registration, self).save(*args, **kwargs)

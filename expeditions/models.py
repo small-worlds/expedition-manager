@@ -40,6 +40,12 @@ class Waypoint(models.Model):
     expedition = models.ForeignKey(Expedition, on_delete=models.CASCADE, related_name='waypoints')
     number = models.IntegerField(blank=False)
 
+    def __str__(self):
+        if self.name is not "":
+            return self.name
+        else:
+            return "%s: %s" % (self.expedition.name, self.number)
+
 
 class Registration(models.Model):
     created = models.DateTimeField(auto_now_add=True)

@@ -14,25 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-import accounts.views as account_views
-import expeditions.views as expedition_views
-from rest_framework.routers import DefaultRouter
 from django.contrib import admin
 
 admin.autodiscover()
 
-router = DefaultRouter()
-router.register(r'profiles', account_views.ProfileViewSet)
-router.register(r'users', account_views.UserViewSet)
-router.register(r'expeditions', expedition_views.ExpeditionViewSet)
-router.register(r'waypoints', expedition_views.WaypointViewSet)
-router.register(r'registrations', expedition_views.RegistrationViewSet, base_name='registration')
-router.register(r'my-registrations', expedition_views.RegistrationSelfViewSet, base_name='my-registration')
-
 urlpatterns = [
-    url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^auth/', include('djoser.urls.authtoken')),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^expeditions/(?P<pk>[0-9]+)/registrations/', expedition_views.ExpeditionRegistrationList.as_view())
+    url(r'^api/', include('api.urls')),
+    url(r'^admin/', include(admin.site.urls))
 ]

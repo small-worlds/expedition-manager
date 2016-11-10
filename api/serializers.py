@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from expeditions.models import Expedition, Waypoint, Registration
 from django.contrib.auth.models import User
 from accounts.models import Profile
 from djoser import settings
@@ -23,7 +24,6 @@ class AuthUserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'id', 'date_joined', 'email', 'id', 'is_staff')
         read_only_fields = ('username', 'id', 'date_joined', 'is_staff')
-
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -51,3 +51,24 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         else:
             user = User.objects.create_user(**validated_data)
         return user
+
+
+class ExpeditionSerializer(serializers.ModelSerializer):
+    waypoints = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    # registrations = serializers.HyperlinkedIdentityField(view_name='expeditionregistration-list')
+    class Meta:
+        model = Expedition
+        fields = '__all__'
+
+
+class WaypointSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Waypoint
+        fields = '__all__'
+
+
+class RegistrationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Registration
+        fields = '__all__'
+        read_only_fields = ('registration_number', 'user')

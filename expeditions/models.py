@@ -13,7 +13,7 @@ def calculate_registration_number(expedition):
 class Expedition(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=255, blank=False)
-    description = models.CharField(max_length=255, blank=True)
+    description = models.TextField(blank=True)
     teaser_image_url = models.URLField(max_length=1024, blank=True)
     teaser_is_movie = models.BooleanField(default=False)
     start_date = models.DateField(auto_now_add=False)
